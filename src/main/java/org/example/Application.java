@@ -35,8 +35,8 @@ public class Application {
         PrestitoDao prestitoDao = new PrestitoDao(em);
 
 
-        fillDb(em);
-        //creaPrestito(utenteDao.getById(75), itemDao.getById(49), em);
+        // fillDb(em);
+        //creaPrestito(utenteDao.getById(141), itemDao.getById(100), em);
 
         //*****************SALVATAGGIO ELEMENTO A CATALOGO**************************
         Book b = new Book(fkr.book().title(), 1998, rnd.nextInt(50, 1000), fkr.book().author(), fkr.book().genre());
@@ -69,6 +69,24 @@ public class Application {
         List<Item> rpt = ricercaPerTitolo("The", em);
         System.out.println("RICERCA PER TITOLO O PARTE DI TITOLO");
         rpt.forEach(System.out::println);
+
+        //******************RICERCA PER TITOLO O PARTE DI TITOLO****************************************
+
+
+     /*   List<Item> rp = elementiInPrestito(96, em);
+        System.out.println("RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER UTENTE");
+        rp.forEach(System.out::println);*/
+
+        //******************RICERCA PRESTITI SCADUTI NON RESTITUITI****************************************
+        List<Prestito> p = prestitiScadutiNonRestituiti(em);
+        System.out.println("RICERCA PRESTITI SCADUTI NON RESTITUITI");
+        if (p.size() == 0) {
+            System.out.println("NON CI SONO PRESTITI SCADUTI NON RESTITUITI");
+        } else {
+            p.forEach(System.out::println);
+        }
+
+
     }
 
     public static void fillDb(EntityManager em) {
@@ -126,8 +144,14 @@ public class Application {
         return itemDao.ricercaPerTitolo(titolo);
     }
 
-//    public static List<Item> elementiInPrestito(long tessera, EntityManager em) {
-//        UtenteDao utenteDao = new UtenteDao(em);
-//
-//    }
+   /* public static List<Item> elementiInPrestito(long tessera, EntityManager em) {
+        PrestitoDao prestitoDao = new PrestitoDao(em);
+        return prestitoDao.elementiInPrestito(tessera);
+
+    }*/
+
+    public static List<Prestito> prestitiScadutiNonRestituiti(EntityManager em) {
+        PrestitoDao prestitoDao = new PrestitoDao(em);
+        return prestitoDao.prestitiScaduti();
+    }
 }
