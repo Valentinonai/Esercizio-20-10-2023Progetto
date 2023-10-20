@@ -35,9 +35,20 @@ public class Application {
         PrestitoDao prestitoDao = new PrestitoDao(em);
 
 
-        // fillDb(em);
+        //  fillDb(em);
+        //creaPrestito(utenteDao.getById(75), itemDao.getById(49), em);
 
+        //*****************SALVATAGGIO ELEMENTO A CATALOGO**************************
+        Book b = new Book(fkr.book().title(), rnd.nextInt(1900, 2024), rnd.nextInt(50, 1000), fkr.book().author(), fkr.book().genre());
+        //aggiungiElemento(b, em);
 
+        //*****************ELIMINA ELEMENTO A CATALOGO******************************
+
+        // eliminaElemento(74, em);
+
+        //******************RICERCA PER ISBN****************************************
+
+        logger.info(String.valueOf(ricercaPerId(61, em)));
     }
 
     public static void fillDb(EntityManager em) {
@@ -54,5 +65,29 @@ public class Application {
             Utente u = new Utente(fkr.name().firstName(), fkr.name().lastName(), LocalDate.of(rnd.nextInt(1950, 2024), rnd.nextInt(1, 13), rnd.nextInt(1, 29)), rnd.nextLong(1000000, 5000000));
             utenteDao.save(u);
         }
+    }
+
+    public static void creaPrestito(Utente u, Item i, EntityManager em) {
+
+        LocalDate l = LocalDate.now();
+
+        Prestito p = new Prestito(u, i, l, l.plusDays(30));
+        PrestitoDao prestitoDao = new PrestitoDao(em);
+        prestitoDao.save(p);
+    }
+
+    public static void aggiungiElemento(Item i, EntityManager em) {
+        ItemDao itemdao = new ItemDao(em);
+        itemdao.save(i);
+    }
+
+    public static void eliminaElemento(long id, EntityManager em) {
+        ItemDao itemdao = new ItemDao(em);
+        itemdao.delete(id);
+    }
+
+    public static Item ricercaPerId(long id, EntityManager em) {
+        ItemDao itemDao = new ItemDao(em);
+        return itemDao.getById(id);
     }
 }

@@ -27,12 +27,12 @@ public class Prestito {
 
     }
 
-    public Prestito(Utente utente, Item item, LocalDate data_prestito, LocalDate data_restituzione_prevista, LocalDate data_restituzione_effettiva) {
+    public Prestito(Utente utente, Item item, LocalDate data_prestito, LocalDate data_restituzione_prevista) {
         this.utente = utente;
         this.item = item;
         this.data_prestito = data_prestito;
         this.data_restituzione_prevista = data_restituzione_prevista;
-        this.data_restituzione_effettiva = data_restituzione_effettiva;
+        this.data_restituzione_effettiva = null;
     }
 
     public long getId() {
