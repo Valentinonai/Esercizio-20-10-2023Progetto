@@ -60,4 +60,10 @@ public class ItemDao {
         q.setParameter("a", autore);
         return q.getResultList();
     }
+
+    public List<Item> ricercaPerTitolo(String titolo) {
+        TypedQuery<Item> q = em.createNamedQuery("ricerca_per_titolo", Item.class);
+        q.setParameter("t", titolo);
+        return q.getResultList();
+    }
 }

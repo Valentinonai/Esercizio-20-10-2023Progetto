@@ -52,11 +52,23 @@ public class Application {
 
         //******************RICERCA PER ANNO****************************************
 
-        ricercaPerAnno(1998, em).forEach(System.out::println);
+        List<Item> rpa = ricercaPerAnno(1998, em);
+        System.out.println("RICERCA PER ANNO");
+        rpa.forEach(System.out::println);
 
         //******************RICERCA PER AUTORE****************************************
 
-        ricercaPerAutore("Carlos Ryan", em).forEach(System.out::println);
+        List<Book> rpat = ricercaPerAutore("Carlos Ryan", em);
+        System.out.println("RICERCA PER AUTORE");
+
+        rpat.forEach(System.out::println);
+
+        //******************RICERCA PER TITOLO O PARTE DI TITOLO****************************************
+
+
+        List<Item> rpt = ricercaPerTitolo("A", em);
+        System.out.println("RICERCA PER TITOLO O PARTE DI TITOLO");
+        rpt.forEach(System.out::println);
     }
 
     public static void fillDb(EntityManager em) {
@@ -107,5 +119,10 @@ public class Application {
     public static List<Book> ricercaPerAutore(String autore, EntityManager em) {
         ItemDao itemDao = new ItemDao(em);
         return itemDao.ricercaPerAutore(autore);
+    }
+
+    public static List<Item> ricercaPerTitolo(String titolo, EntityManager em) {
+        ItemDao itemDao = new ItemDao(em);
+        return itemDao.ricercaPerTitolo(titolo);
     }
 }

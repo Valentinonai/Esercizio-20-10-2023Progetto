@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "ricerca_per_anno", query = "SELECT i FROM Item i WHERE i.annoPubblicazione=:a")
-
+@NamedQuery(name = "ricerca_per_titolo", query = "SELECT i FROM Item i WHERE i.titolo LIKE CONCAT(:t,'%')")
 public abstract class Item {
     @Id
     @GeneratedValue
