@@ -104,6 +104,10 @@ public class Application {
         // utenteDao.delete(141);  //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN UTENTE ELIMINATO
 
         // itemDao.delete(109);    //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN ITEM ELIMINATO
+
+        em.close();
+        emf.close();
+        input.close();
     }
 
     public static void fillDb(EntityManager em) {
