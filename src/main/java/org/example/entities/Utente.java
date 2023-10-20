@@ -16,7 +16,7 @@ public class Utente {
     private String cognome;
     @Column(name = "data_di_nascita")
     private LocalDate data_di_nascita;
-    @OneToMany(mappedBy = "utente")
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.REMOVE)
     private List<Prestito> lista_prestiti;
 
     public Utente() {
@@ -63,7 +63,7 @@ public class Utente {
     @Override
     public String toString() {
         return "Utente{" +
-              
+
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", data_di_nascita=" + data_di_nascita +

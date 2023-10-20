@@ -101,7 +101,7 @@ public class Application {
             p.forEach(System.out::println);
         }
 
-
+        // utenteDao.delete(141);  //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN UTENTE
     }
 
     public static void fillDb(EntityManager em) {
