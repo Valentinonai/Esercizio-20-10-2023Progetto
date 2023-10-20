@@ -2,10 +2,12 @@ package org.example.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "books")
+@NamedQuery(name = "ricerca_per_autore", query = "SELECT b FROM Book b WHERE b.autore=:a")
 public class Book extends Item {
     @Column(name = "autore")
     private String autore;

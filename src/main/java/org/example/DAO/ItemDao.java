@@ -1,5 +1,6 @@
 package org.example.DAO;
 
+import org.example.entities.Book;
 import org.example.entities.Item;
 
 import javax.persistence.EntityManager;
@@ -51,6 +52,12 @@ public class ItemDao {
     public List<Item> ricercaPerAnno(int anno) {
         TypedQuery<Item> q = em.createNamedQuery("ricerca_per_anno", Item.class);
         q.setParameter("a", anno);
+        return q.getResultList();
+    }
+
+    public List<Book> ricercaPerAutore(String autore) {
+        TypedQuery<Book> q = em.createNamedQuery("ricerca_per_autore", Book.class);
+        q.setParameter("a", autore);
         return q.getResultList();
     }
 }

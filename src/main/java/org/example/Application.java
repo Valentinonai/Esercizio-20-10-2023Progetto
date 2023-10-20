@@ -53,6 +53,10 @@ public class Application {
         //******************RICERCA PER ANNO****************************************
 
         ricercaPerAnno(1998, em).forEach(System.out::println);
+
+        //******************RICERCA PER AUTORE****************************************
+
+        ricercaPerAutore("Carlos Ryan", em).forEach(System.out::println);
     }
 
     public static void fillDb(EntityManager em) {
@@ -98,5 +102,10 @@ public class Application {
     public static List<Item> ricercaPerAnno(int anno, EntityManager em) {
         ItemDao itemDao = new ItemDao(em);
         return itemDao.ricercaPerAnno(anno);
+    }
+
+    public static List<Book> ricercaPerAutore(String autore, EntityManager em) {
+        ItemDao itemDao = new ItemDao(em);
+        return itemDao.ricercaPerAutore(autore);
     }
 }
