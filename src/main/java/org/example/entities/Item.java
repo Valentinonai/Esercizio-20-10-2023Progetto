@@ -8,7 +8,7 @@ import java.util.List;
 public abstract class Item {
     @Id
     @GeneratedValue
-    protected String isbn;
+    protected long isbn;
     @Column(name = "titolo", nullable = false)
     protected String titolo;
     @Column(name = "anno_pubblicazione", nullable = false)
@@ -37,7 +37,7 @@ public abstract class Item {
         this.numeroPagine = numeroPagine;
     }
 
-    public String getIsbn() {
+    public long getIsbn() {
         return isbn;
     }
 
