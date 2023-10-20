@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -14,6 +15,8 @@ public abstract class Item {
     protected int annoPubblicazione;
     @Column(name = "numero_pagine", nullable = false)
     protected int numeroPagine;
+    @OneToMany(mappedBy = "item")
+    private List<Prestito> lista_prestiti;
 
     public Item() {
 
