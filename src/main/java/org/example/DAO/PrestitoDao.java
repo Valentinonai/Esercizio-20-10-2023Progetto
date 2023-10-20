@@ -45,4 +45,8 @@ public class PrestitoDao {
             System.out.println(e.getMessage());
         }
     }
+
+//    public List<Item> elementiInPrestito(long tessera){
+//        TypedQuery<Item> q=em.createQuery("SELECT i FROM Item i WHERE")
+//    }
 }

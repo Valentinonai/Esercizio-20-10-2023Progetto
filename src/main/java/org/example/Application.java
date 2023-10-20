@@ -35,7 +35,7 @@ public class Application {
         PrestitoDao prestitoDao = new PrestitoDao(em);
 
 
-        //  fillDb(em);
+        fillDb(em);
         //creaPrestito(utenteDao.getById(75), itemDao.getById(49), em);
 
         //*****************SALVATAGGIO ELEMENTO A CATALOGO**************************
@@ -52,13 +52,13 @@ public class Application {
 
         //******************RICERCA PER ANNO****************************************
 
-        List<Item> rpa = ricercaPerAnno(1998, em);
+        List<Item> rpa = ricercaPerAnno(1997, em);
         System.out.println("RICERCA PER ANNO");
         rpa.forEach(System.out::println);
 
         //******************RICERCA PER AUTORE****************************************
 
-        List<Book> rpat = ricercaPerAutore("Carlos Ryan", em);
+        List<Book> rpat = ricercaPerAutore("Beverly Nicolas", em);
         System.out.println("RICERCA PER AUTORE");
 
         rpat.forEach(System.out::println);
@@ -66,7 +66,7 @@ public class Application {
         //******************RICERCA PER TITOLO O PARTE DI TITOLO****************************************
 
 
-        List<Item> rpt = ricercaPerTitolo("A", em);
+        List<Item> rpt = ricercaPerTitolo("The", em);
         System.out.println("RICERCA PER TITOLO O PARTE DI TITOLO");
         rpt.forEach(System.out::println);
     }
@@ -82,7 +82,7 @@ public class Application {
             int n = rnd.nextInt(1, 4);
             Magazine m = new Magazine(fkr.book().title(), rnd.nextInt(1900, 2024), rnd.nextInt(50, 1000), n == 1 ? Periodicita.SETTIMANALE : n == 2 ? Periodicita.MENSILE : Periodicita.SEMESTRALE);
             itemDao.save(m);
-            Utente u = new Utente(fkr.name().firstName(), fkr.name().lastName(), LocalDate.of(rnd.nextInt(1950, 2024), rnd.nextInt(1, 13), rnd.nextInt(1, 29)), rnd.nextLong(1000000, 5000000));
+            Utente u = new Utente(fkr.name().firstName(), fkr.name().lastName(), LocalDate.of(rnd.nextInt(1950, 2024), rnd.nextInt(1, 13), rnd.nextInt(1, 29)));
             utenteDao.save(u);
         }
     }
@@ -125,4 +125,9 @@ public class Application {
         ItemDao itemDao = new ItemDao(em);
         return itemDao.ricercaPerTitolo(titolo);
     }
+
+//    public static List<Item> elementiInPrestito(long tessera, EntityManager em) {
+//        UtenteDao utenteDao = new UtenteDao(em);
+//
+//    }
 }

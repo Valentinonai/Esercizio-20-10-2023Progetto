@@ -9,15 +9,13 @@ import java.util.List;
 public class Utente {
     @Id
     @GeneratedValue
-    private long id;
+    private long numero_di_tessera;
     @Column(name = "nome", nullable = false)
     private String nome;
     @Column(name = "cognome", nullable = false)
     private String cognome;
     @Column(name = "data_di_nascita")
     private LocalDate data_di_nascita;
-    @Column(name = "numero_di_tessera", nullable = false)
-    private long numero_di_tessera;
     @OneToMany(mappedBy = "utente")
     private List<Prestito> lista_prestiti;
 
@@ -25,15 +23,11 @@ public class Utente {
 
     }
 
-    public Utente(String nome, String cognome, LocalDate data_di_nascita, long numero_di_tessera) {
+    public Utente(String nome, String cognome, LocalDate data_di_nascita) {
         this.nome = nome;
         this.cognome = cognome;
         this.data_di_nascita = data_di_nascita;
-        this.numero_di_tessera = numero_di_tessera;
-    }
 
-    public long getId() {
-        return id;
     }
 
 
@@ -65,14 +59,11 @@ public class Utente {
         return numero_di_tessera;
     }
 
-    public void setNumero_di_tessera(long numero_di_tessera) {
-        this.numero_di_tessera = numero_di_tessera;
-    }
 
     @Override
     public String toString() {
         return "Utente{" +
-                "id=" + id +
+              
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", data_di_nascita=" + data_di_nascita +
