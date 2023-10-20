@@ -70,12 +70,15 @@ public class Application {
         System.out.println("RICERCA PER TITOLO O PARTE DI TITOLO");
         rpt.forEach(System.out::println);
 
-        //******************RICERCA PER TITOLO O PARTE DI TITOLO****************************************
+        //******************RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER UTENTE****************************************
 
 
-     /*   List<Item> rp = elementiInPrestito(96, em);
+        List<Item> rp = elementiInPrestito(96, em);
         System.out.println("RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER UTENTE");
-        rp.forEach(System.out::println);*/
+        if (rp.size() == 0)
+            System.out.println("NON CI SONO ELEMENTI ATTUALMENTE IN PRESTITO PER QUESTO UTENTE");
+        else
+            rp.forEach(System.out::println);
 
         //******************RICERCA PRESTITI SCADUTI NON RESTITUITI****************************************
         List<Prestito> p = prestitiScadutiNonRestituiti(em);
@@ -144,11 +147,11 @@ public class Application {
         return itemDao.ricercaPerTitolo(titolo);
     }
 
-   /* public static List<Item> elementiInPrestito(long tessera, EntityManager em) {
+    public static List<Item> elementiInPrestito(long tessera, EntityManager em) {
         PrestitoDao prestitoDao = new PrestitoDao(em);
         return prestitoDao.elementiInPrestito(tessera);
 
-    }*/
+    }
 
     public static List<Prestito> prestitiScadutiNonRestituiti(EntityManager em) {
         PrestitoDao prestitoDao = new PrestitoDao(em);

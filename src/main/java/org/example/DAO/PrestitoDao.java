@@ -1,5 +1,6 @@
 package org.example.DAO;
 
+import org.example.entities.Item;
 import org.example.entities.Prestito;
 
 import javax.persistence.EntityManager;
@@ -49,12 +50,12 @@ public class PrestitoDao {
         }
     }
 
-   /* public List<Item> elementiInPrestito(long tessera) {
-        TypedQuery<Item> q = em.createQuery("SELECT i FROM Item i Join Prestito p ON i.isbn=p.item WHERE p.utente=:tessera ", Item.class);
-        q.setParameter("tessera", tessera);
+    public List<Item> elementiInPrestito(long tessera) {
+        TypedQuery<Item> q = em.createQuery("SELECT i FROM Item i Join Prestito p ON i.isbn=p.item WHERE p.utente=" + tessera + " AND p.data_restituzione_effettiva=null", Item.class);
+//        q.setParameter("tessera", tessera);
         return q.getResultList();
 
-    }*/
+    }
 
     public List<Prestito> prestitiScaduti() {
         LocalDate now = LocalDate.now();
