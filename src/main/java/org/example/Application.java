@@ -48,33 +48,45 @@ public class Application {
 
         //******************RICERCA PER ISBN****************************************
 
-        logger.info(String.valueOf(ricercaPerId(61, em)));
+        Item i = ricercaPerId(97, em);
+        System.out.println("*************************************************RICERCA PER ISBN************************************");
+        if (i != null)
+            System.out.println(i);
+        else System.out.println("ELEMENTO NON TROVATO");
 
         //******************RICERCA PER ANNO****************************************
 
         List<Item> rpa = ricercaPerAnno(1997, em);
-        System.out.println("RICERCA PER ANNO");
-        rpa.forEach(System.out::println);
+        System.out.println("*************************************************RICERCA PER ANNO************************************");
+        if (rpa.size() == 0)
+            System.out.println("NESSUN ELEMENTO TROVATO");
+        else
+            rpa.forEach(System.out::println);
 
         //******************RICERCA PER AUTORE****************************************
 
         List<Book> rpat = ricercaPerAutore("Beverly Nicolas", em);
-        System.out.println("RICERCA PER AUTORE");
-
-        rpat.forEach(System.out::println);
+        System.out.println("*************************************************RICERCA PER AUTORE************************************");
+        if (rpat.size() == 0)
+            System.out.println("NESSUN ELEMENTO TROVATO");
+        else
+            rpat.forEach(System.out::println);
 
         //******************RICERCA PER TITOLO O PARTE DI TITOLO****************************************
 
 
         List<Item> rpt = ricercaPerTitolo("The", em);
-        System.out.println("RICERCA PER TITOLO O PARTE DI TITOLO");
-        rpt.forEach(System.out::println);
+        System.out.println("*************************************************RICERCA PER TITOLO O PARTE DI TITOLO************************************");
+        if (rpt.size() == 0)
+            System.out.println("NESSUN ELEMENTO TROVATO");
+        else
+            rpt.forEach(System.out::println);
 
-        //******************RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER UTENTE****************************************
+        //******************RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER TESSERA UTENTE****************************************
 
 
         List<Item> rp = elementiInPrestito(96, em);
-        System.out.println("RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER UTENTE");
+        System.out.println("*************************************************RICERCA ELEMENTI ATTUALMENTE IN PRESTITO PER TESSERA UTENTE************************************");
         if (rp.size() == 0)
             System.out.println("NON CI SONO ELEMENTI ATTUALMENTE IN PRESTITO PER QUESTO UTENTE");
         else
@@ -82,7 +94,7 @@ public class Application {
 
         //******************RICERCA PRESTITI SCADUTI NON RESTITUITI****************************************
         List<Prestito> p = prestitiScadutiNonRestituiti(em);
-        System.out.println("RICERCA PRESTITI SCADUTI NON RESTITUITI");
+        System.out.println("*************************************************RICERCA PRESTITI SCADUTI NON RESTITUITI************************************");
         if (p.size() == 0) {
             System.out.println("NON CI SONO PRESTITI SCADUTI NON RESTITUITI");
         } else {

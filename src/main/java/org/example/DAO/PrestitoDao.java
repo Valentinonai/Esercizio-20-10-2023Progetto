@@ -51,8 +51,8 @@ public class PrestitoDao {
     }
 
     public List<Item> elementiInPrestito(long tessera) {
-        TypedQuery<Item> q = em.createQuery("SELECT i FROM Item i Join Prestito p ON i.isbn=p.item WHERE p.utente=" + tessera + " AND p.data_restituzione_effettiva=null", Item.class);
-//        q.setParameter("tessera", tessera);
+        TypedQuery<Item> q = em.createQuery("SELECT i FROM Item i Join Prestito p ON i.isbn=p.item WHERE p.utente.numero_di_tessera=:tessera AND p.data_restituzione_effettiva=null", Item.class);
+        q.setParameter("tessera", tessera);
         return q.getResultList();
 
     }
