@@ -36,7 +36,7 @@ public class Application {
 
 
         // fillDb(em);
-        //creaPrestito(utenteDao.getById(141), itemDao.getById(100), em);
+        //  creaPrestito(utenteDao.getById(108), itemDao.getById(109), em);
 
         //*****************SALVATAGGIO ELEMENTO A CATALOGO**************************
         Book b = new Book(fkr.book().title(), 1998, rnd.nextInt(50, 1000), fkr.book().author(), fkr.book().genre());
@@ -101,7 +101,9 @@ public class Application {
             p.forEach(System.out::println);
         }
 
-        // utenteDao.delete(141);  //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN UTENTE
+        // utenteDao.delete(141);  //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN UTENTE ELIMINATO
+
+        // itemDao.delete(109);    //ELIMINA A CASCATA ANCHE I PRESTITI COLLEGATI AD UN ITEM ELIMINATO
     }
 
     public static void fillDb(EntityManager em) {

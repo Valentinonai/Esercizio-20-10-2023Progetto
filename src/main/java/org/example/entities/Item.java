@@ -17,7 +17,7 @@ public abstract class Item {
     protected int annoPubblicazione;
     @Column(name = "numero_pagine", nullable = false)
     protected int numeroPagine;
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
     private List<Prestito> lista_prestiti;
 
     public Item() {
