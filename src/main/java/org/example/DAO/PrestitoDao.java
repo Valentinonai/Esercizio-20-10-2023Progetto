@@ -58,7 +58,7 @@ public class PrestitoDao {
     }
 
     public List<Prestito> prestitiScaduti() {
-        LocalDate now = LocalDate.of(2024, 5, 4);
+        LocalDate now = LocalDate.now();
         TypedQuery<Prestito> q = em.createQuery("SELECT p FROM Prestito p WHERE p.data_restituzione_prevista<:now AND p.data_restituzione_effettiva=null", Prestito.class);
         q.setParameter("now", now);
         return q.getResultList();
