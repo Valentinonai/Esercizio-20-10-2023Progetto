@@ -4,6 +4,8 @@ import org.example.entities.Item;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class ItemDao {
     private EntityManager em;
@@ -44,5 +46,11 @@ public class ItemDao {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public List<Item> ricercaPerAnno(int anno) {
+        TypedQuery<Item> q = em.createNamedQuery("ricerca_per_anno", Item.class);
+        q.setParameter("a", anno);
+        return q.getResultList();
     }
 }

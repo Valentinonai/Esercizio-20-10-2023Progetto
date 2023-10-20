@@ -39,8 +39,8 @@ public class Application {
         //creaPrestito(utenteDao.getById(75), itemDao.getById(49), em);
 
         //*****************SALVATAGGIO ELEMENTO A CATALOGO**************************
-        Book b = new Book(fkr.book().title(), rnd.nextInt(1900, 2024), rnd.nextInt(50, 1000), fkr.book().author(), fkr.book().genre());
-        //aggiungiElemento(b, em);
+        Book b = new Book(fkr.book().title(), 1998, rnd.nextInt(50, 1000), fkr.book().author(), fkr.book().genre());
+        // aggiungiElemento(b, em);
 
         //*****************ELIMINA ELEMENTO A CATALOGO******************************
 
@@ -49,6 +49,10 @@ public class Application {
         //******************RICERCA PER ISBN****************************************
 
         logger.info(String.valueOf(ricercaPerId(61, em)));
+
+        //******************RICERCA PER ANNO****************************************
+
+        ricercaPerAnno(1998, em).forEach(System.out::println);
     }
 
     public static void fillDb(EntityManager em) {
@@ -89,5 +93,10 @@ public class Application {
     public static Item ricercaPerId(long id, EntityManager em) {
         ItemDao itemDao = new ItemDao(em);
         return itemDao.getById(id);
+    }
+
+    public static List<Item> ricercaPerAnno(int anno, EntityManager em) {
+        ItemDao itemDao = new ItemDao(em);
+        return itemDao.ricercaPerAnno(anno);
     }
 }
