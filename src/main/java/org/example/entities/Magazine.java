@@ -1,10 +1,19 @@
 package org.example.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "magazines")
 public class Magazine extends Item {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "periodicita")
     private Periodicita periodicita;
 
-    public Magazine(String isbn, String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
-        super(isbn, titolo, annoPubblicazione, numeroPagine);
+    public Magazine() {
+    }
+
+    public Magazine(String titolo, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
+        super(titolo, annoPubblicazione, numeroPagine);
         this.periodicita = periodicita;
     }
 

@@ -1,14 +1,26 @@
 package org.example.entities;
 
-public abstract class Item {
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Item {
+    @Id
+    @GeneratedValue
     protected String isbn;
+    @Column(name = "titolo", nullable = false)
     protected String titolo;
+    @Column(name = "anno_pubblicazione", nullable = false)
     protected int annoPubblicazione;
+    @Column(name = "numero_pagine", nullable = false)
     protected int numeroPagine;
 
-    public Item(String isbn, String titolo, int annoPubblicazione, int numeroPagine) {
-        this.isbn = isbn;
+    public Item() {
+
+    }
+
+    public Item(String titolo, int annoPubblicazione, int numeroPagine) {
+
         this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
@@ -26,9 +38,6 @@ public abstract class Item {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitolo() {
         return titolo;
@@ -44,5 +53,15 @@ public abstract class Item {
 
     public void setAnnoPubblicazione(int annoPubblicazione) {
         this.annoPubblicazione = annoPubblicazione;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "isbn='" + isbn + '\'' +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
     }
 }

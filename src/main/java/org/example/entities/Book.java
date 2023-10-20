@@ -1,11 +1,23 @@
 package org.example.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "books")
 public class Book extends Item {
+    @Column(name = "autore")
     private String autore;
+    @Column(name = "genere")
     private String genere;
 
-    public Book(String isbn, String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
-        super(isbn, titolo, annoPubblicazione, numeroPagine);
+    public Book() {
+
+    }
+
+    public Book(String titolo, int annoPubblicazione, int numeroPagine, String autore, String genere) {
+        super(titolo, annoPubblicazione, numeroPagine);
         this.autore = autore;
         this.genere = genere;
     }
